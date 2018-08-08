@@ -1,0 +1,7 @@
+@import '~antd/dist/antd.css';
+@import '../styles/_main.css';
+
+.container {
+  padding: 30px;
+  text-align: center;
+}

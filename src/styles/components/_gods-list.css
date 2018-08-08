@@ -1,0 +1,16 @@
+.list-item {
+  backface-visibility: hidden;
+  background-color: #eeeeee;
+  border: 1px solid #dddddd;
+  box-shadow: 2px 4px 2px -2px gray;
+  font-size: 16px;
+  font-weight: 700;
+  list-style-type: none;
+  margin: 20px 30%;
+  padding: 5px;
+  transition: all .2s;
+}
+
+.list-item:hover {
+  transform: scale(1.05);
+}

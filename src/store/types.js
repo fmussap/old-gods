@@ -1,0 +1,3 @@
+export const SET_GODS_LIST = 'SET_GODS_LIST'
+export const SET_SEARCH_LIST = 'SET_SEARCH_LIST'
+export const SET_ERROR_MESSAGE = 'SET_ERROR_MESSAGE'
