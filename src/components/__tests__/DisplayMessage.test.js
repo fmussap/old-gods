@@ -4,7 +4,7 @@ import { shallow } from 'enzyme'
 import DisplayMessage from 'components/DisplayMessage'
 
 let wrapped
-const message = 'new message'
+const message = 'New Message'
 const message2 = 'wrong message'
 
 beforeEach(() => {

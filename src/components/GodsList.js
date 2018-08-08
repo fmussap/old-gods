@@ -2,13 +2,10 @@ import React from 'react'
 import { Col, Row } from 'antd'
 import moment from 'moment'
 
+import capitalizeFirstLetter from '../utils/capitalizeFirstLetter'
+
 const GodsList = ({ data }) => {
-  const capitalizeFirstLetter = (string) => {
-    const splitString = string.split(/[_' ']/)
-    return splitString.map((word) => {
-      return word.replace(/^./, word[0].toUpperCase())
-    }).join(' ')
-  }
+
   const renderList = () => {
     if (data.length === 0) {
       return (
