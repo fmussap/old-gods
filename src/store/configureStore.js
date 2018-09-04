@@ -1,9 +1,11 @@
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
-import thunk from 'redux-thunk'
+import {
+  createStore, combineReducers, applyMiddleware, compose
+} from 'redux';
+import thunk from 'redux-thunk';
 
-import gods from 'store/reducers/gods-reducer'
+import gods from 'Store/reducers/gods-reducer';
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export default (initialStore) => {
   const store = createStore(
@@ -12,7 +14,7 @@ export default (initialStore) => {
     }),
     initialStore,
     composeEnhancers(applyMiddleware(thunk))
-  )
+  );
 
-  return store
-}
+  return store;
+};

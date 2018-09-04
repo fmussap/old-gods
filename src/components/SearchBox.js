@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
-import { Input } from 'antd'
+import React, { Component } from 'react';
+import { Input } from 'antd';
+import PropTypes from 'prop-types';
 
-const Search = Input.Search
+const { Search } = Input;
 
 class SearchBox extends Component {
   state = {
@@ -9,25 +10,31 @@ class SearchBox extends Component {
   }
 
   onChange = ({ target }) => {
-    const search = target.value
+    const { handleSearch } = this.props;
+    const search = target.value;
     this.setState(() => ({
       search
-    }), () => this.props.handleSearch(this.state.search.trim()))
+    }), () => handleSearch(search.trim()));
   }
 
-  render () {
+  render() {
+    const { search } = this.state;
     return (
       <div>
         <Search
           enterButton
           onChange={this.onChange}
-          placeholder='search for gods'
+          placeholder="search for gods"
           style={{ width: 200 }}
-          value={this.state.search}
+          value={search}
         />
       </div>
-    )
+    );
   }
 }
 
-export default SearchBox
+SearchBox.propTypes = {
+  handleSearch: PropTypes.func.isRequired
+};
+
+export default SearchBox;

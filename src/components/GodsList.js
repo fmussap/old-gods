@@ -1,28 +1,28 @@
-import React from 'react'
-import { Col, Row } from 'antd'
-import moment from 'moment'
+import React from 'react';
+import { Col, Row } from 'antd';
+import moment from 'moment';
+import PropTypes from 'prop-types';
 
-import capitalizeFirstLetter from '../utils/capitalizeFirstLetter'
+import capitalizeFirstLetter from 'Utils/capitalizeFirstLetter';
 
 const GodsList = ({ data }) => {
-
   const renderList = () => {
     if (data.length === 0) {
       return (
-        <div className='list-item'>
+        <div className="list-item">
           No gods found ...
         </div>
-      )
+      );
     }
-    return data.map(({ name, superpower, end_of_an_era }, i) => {
-      const capitalName = capitalizeFirstLetter(name)
-      const capitalsuperpower = capitalizeFirstLetter(superpower)
-      const formatedDate = moment(end_of_an_era).format('DD/MM/YYYY')
-      const nameLabel = capitalizeFirstLetter('name')
-      const superpowerLabel = capitalizeFirstLetter('superpower')
-      const eraLabel = capitalizeFirstLetter('end_of_an_era')
+    return data.map(({ name, superpower, end_of_an_era: endOfAnEra }) => {
+      const capitalName = capitalizeFirstLetter(name);
+      const capitalsuperpower = capitalizeFirstLetter(superpower);
+      const formatedDate = moment(endOfAnEra).format('DD/MM/YYYY');
+      const nameLabel = capitalizeFirstLetter('name');
+      const superpowerLabel = capitalizeFirstLetter('superpower');
+      const eraLabel = capitalizeFirstLetter('end_of_an_era');
       return (
-        <li key={i} className='list-item'>
+        <li key={name} className="list-item">
           <Row>
             <Col span={12}>{nameLabel}: </Col>
             <Col span={12}>{capitalName}</Col>
@@ -36,14 +36,18 @@ const GodsList = ({ data }) => {
             <Col span={12}>{formatedDate}</Col>
           </Row>
         </li>
-      )
-    })
-  }
+      );
+    });
+  };
   return (
     <div>
       {renderList()}
     </div>
-  )
-}
+  );
+};
 
-export default GodsList
+GodsList.propTypes = {
+  data: PropTypes.array.isRequired
+};
+
+export default GodsList;

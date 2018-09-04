@@ -51,5 +51,14 @@ module.exports = {
   testsSetup: resolveApp('src/setupTests.js'),
   appNodeModules: resolveApp('node_modules'),
   publicUrl: getPublicUrl(resolveApp('package.json')),
-  servedPath: getServedPath(resolveApp('package.json'))
+  servedPath: getServedPath(resolveApp('package.json')),
+  resolve: {
+    extensions: ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx'],
+    alias: {
+      Components: path.resolve(__dirname, '../src/components'),
+      Store: path.resolve(__dirname, '../src/store'),
+      Styles: path.resolve(__dirname, '../src/styles'),
+      Utils: path.resolve(__dirname, '../src/utils'),
+    }
+  }
 }

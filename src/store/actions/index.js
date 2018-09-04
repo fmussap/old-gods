@@ -3,4 +3,4 @@ export {
   setGodsList,
   setSearchList,
   setErrorMessage
-} from './godsActions'
+} from './godsActions';

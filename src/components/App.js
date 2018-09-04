@@ -1,53 +1,73 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { getListGods, setSearchList } from 'store/actions'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as actions from 'Store/actions';
+import PropTypes from 'prop-types';
 
-import './App.css'
+import './App.css';
 
-import SearchBox from 'components/SearchBox'
-import GodsList from 'components/GodsList'
-import DisplayMessage from 'components/DisplayMessage'
+import SearchBox from 'Components/SearchBox';
+import GodsList from 'Components/GodsList';
+import DisplayMessage from 'Components/DisplayMessage';
 
 class App extends Component {
+  componentDidMount() {
+    const { getListGods } = this.props;
+    getListGods(null, 'errorMessage');
+  }
+
   handleSearch = (value) => {
-    const { cacheList, getListGods, setSearchList } = this.props
-    const cache = cacheList[value]
+    const { cacheList, getListGods, setSearchList } = this.props;
+    const cache = cacheList[value];
     if (cache) {
-      setSearchList(cache)
+      setSearchList(cache);
     } else if (!value) {
-      const all = cacheList['all']
-      setSearchList(all)
+      const { all } = cacheList;
+      setSearchList(all);
     } else {
-      getListGods(value)
+      getListGods(value);
     }
   }
-  componentDidMount () {
-    this.props.getListGods(null, 'errorMessage')
+
+  renderMessage = () => {
+    const { message } = this.props;
+    if (message) {
+      return (
+        <DisplayMessage message={message} />
+      );
+    }
+    return null;
   }
-  render () {
-    const { list, message } = this.props
+
+  render() {
+    const { list } = this.props;
     return (
-      <div className='container'>
+      <div className="container">
         <SearchBox handleSearch={this.handleSearch} />
         <GodsList data={list} />
-        <DisplayMessage message={message} />
+        {this.renderMessage()}
       </div>
-    )
+    );
   }
-}
-
-const matchDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    getListGods,
-    setSearchList
-  }, dispatch)
 }
 
 const mapStateToProps = ({ gods }) => ({
-  list: gods.searchList,
   cacheList: gods.cacheList,
+  list: gods.searchList,
   message: gods.errorMessage
-})
+});
 
-export default connect(mapStateToProps, matchDispatchToProps)(App)
+App.defaultProps = {
+  cacheList: {},
+  list: [],
+  message: null
+};
+
+App.propTypes = {
+  cacheList: PropTypes.object,
+  getListGods: PropTypes.func.isRequired,
+  list: PropTypes.array,
+  message: PropTypes.string,
+  setSearchList: PropTypes.func.isRequired
+};
+
+export default connect(mapStateToProps, actions)(App);

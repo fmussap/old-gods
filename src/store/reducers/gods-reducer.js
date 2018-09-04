@@ -1,10 +1,10 @@
-import * as actions from 'store/types'
+import * as actions from 'Store/types';
 
 const INITIAL_STATE = {
   cacheList: {},
   searchList: [],
   errorMessage: null
-}
+};
 
 const godsReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -15,20 +15,20 @@ const godsReducer = (state = INITIAL_STATE, action) => {
           ...state.cacheList,
           [`${action.id}`]: action.data
         }
-      }
+      };
     case actions.SET_SEARCH_LIST:
       return {
         ...state,
         searchList: action.data
-      }
+      };
     case actions.SET_ERROR_MESSAGE:
       return {
         ...state,
         errorMessage: action.msg
-      }
+      };
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default godsReducer
+export default godsReducer;

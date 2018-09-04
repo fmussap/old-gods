@@ -1,13 +1,13 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-import Root from './Root'
-import App from 'components/App'
+import App from 'Components/App';
+import Root from './Root';
 
 const jsx = (
   <Root>
     <App />
   </Root>
-)
+);
 
-ReactDOM.render(jsx, document.querySelector('#root'))
+ReactDOM.render(jsx, document.querySelector('#root'));
